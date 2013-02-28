@@ -21,11 +21,11 @@ def convert_float(x, double=False):
     return stringfmt % struct.unpack(intfmt, struct.pack(floatfmt, x))
 
 def convert_int_array(arr, size):
-    return '(' + ', '.join([convert_int(x, size) for x in arr]) + ')'
+    return ', '.join([convert_int(x, size) for x in arr])
 
 
 def convert_float_array(arr, double=False):
-    return '(' + ', '.join([convert_float(x, double) for x in arr]) + ')'
+    return ', '.join([convert_float(x, double) for x in arr])
 
 VHDL_TEMPLATE = """
 library ieee;
@@ -39,7 +39,7 @@ end {entname};
 
 architecture rtl of {entname} is
     type rom_type is array(0 to {rommax}) of {datatype}({intmax} downto 0);
-    signal ROM : rom_type := {romarray}
+    signal ROM : rom_type := ({romarray});
 begin
     value <= ROM(to_integer(addr));
 end rtl;

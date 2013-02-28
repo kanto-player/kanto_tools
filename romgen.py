@@ -34,7 +34,7 @@ use ieee.numeric_std.all;
 
 entity {entname} is
     port(addr  : in unsigned({addrmax} downto 0);
-         value : out unsigned({intmax} downto 0));
+         value : out {datatype}({intmax} downto 0));
 end {entname};
 
 architecture rtl of {entname} is

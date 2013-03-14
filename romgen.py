@@ -43,7 +43,7 @@ architecture rtl of {entname} is
     type rom_type is array(0 to {rommax}) of {datatype}({intmax} downto 0);
     signal ROM : rom_type := ({romarray});
 begin
-    value <= ROM(to_integer(addr));
+    value <= ROM(to_integer(addr)) when addr <= {rommax} else (others => '0');
 end rtl;
 """
 

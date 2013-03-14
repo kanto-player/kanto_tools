@@ -8,7 +8,7 @@ import os.path
 
 def convert_int(x, size):
     fmt = "x\"%%0%dx\"" % (size / 4)
-    return fmt % x
+    return fmt % (x & ((1 << size) - 1))
 
 def convert_float(x, double=False):
     if double:

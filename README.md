@@ -2,7 +2,7 @@
 
 ## romgen.py
 
-Helpful tool for generating VHDL roms from a JSON file.
+Helpful tool for generating VHDL array initializers from a JSON file.
 
 ### Example JSON ROM
 

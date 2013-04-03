@@ -48,15 +48,12 @@ end rtl;
 """
 
 if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        print("Usage: romgen.py romfile.json romctrl.vhd")
+    if len(sys.argv) < 2:
+        print("Usage: romgen.py romfile.json")
         sys.exit(1)
 
     with open(sys.argv[1], "r") as jsonf:
         romdata = json.load(jsonf)
-
-    vhdfname = sys.argv[2]
-    entname, _ = os.path.splitext(os.path.basename(vhdfname))
 
     arr = romdata['values']
     dtype = romdata['dtype']
@@ -71,14 +68,4 @@ if __name__ == '__main__':
     else:
         arrstr = convert_int_array(arr, dsize)
 
-    addrmax = int(math.log(len(arr), 2))
-    vhdl_code = VHDL_TEMPLATE.format(
-                        entname = entname, 
-                        addrmax = addrmax,
-                        intmax = dsize - 1,
-                        rommax = len(arr) - 1,
-                        datatype = vhdltype,
-                        romarray = arrstr)
-    
-    with open(vhdfname, "w") as vhdf:
-        vhdf.write(vhdl_code)
+    print "(" + arrstr + ")"

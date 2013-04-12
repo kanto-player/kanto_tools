@@ -47,7 +47,3 @@ echo "**************************************************"
 echo "Total FR: $fr"
 echo "Total Bu: $bu"
 echo "Total FNE: $fne"
-
-d=`date`
-echo -n "$d, " >> ~/Workspace/columbia/spring2013/embedded/scripts/log.csv 
-echo -ne "$fr, $bu, $fne\n" >> ~/Workspace/columbia/spring2013/embedded/scripts/log.csv 

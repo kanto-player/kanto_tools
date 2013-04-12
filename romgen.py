@@ -29,24 +29,6 @@ def convert_int_array(arr, size):
 def convert_float_array(arr, double=False):
     return ', '.join([convert_float(x, double) for x in arr])
 
-VHDL_TEMPLATE = """
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-
-entity {entname} is
-    port(addr  : in unsigned({addrmax} downto 0);
-         value : out {datatype}({intmax} downto 0));
-end {entname};
-
-architecture rtl of {entname} is
-    type rom_type is array(0 to {rommax}) of {datatype}({intmax} downto 0);
-    signal ROM : rom_type := ({romarray});
-begin
-    value <= ROM(to_integer(addr)) when addr <= {rommax} else (others => '0');
-end rtl;
-"""
-
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print("Usage: romgen.py romfile.json")

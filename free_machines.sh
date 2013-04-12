@@ -1,21 +1,17 @@
 #!/bin/bash
 
-if [ ! -f ~/Workspace/columbia/spring2013/embedded/scripts/log.csv ]
-then
-    echo "date, free and equipped, busy, free but unequipped" > ~/Workspace/columbia/spring2013/embedded/scripts/log.csv 
-fi
-
 echo "EMBEDDED SYSTEM LAB POLLING"
 
 machine_statuses=(0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
 fr=0
 bu=0
 fne=0
+user=$1
 
 for i in {1..15}
 do
     echo "machine $i=========================="
-    ssh "djb2167@micro"$i".ilab.columbia.edu" 'bash -s' < ~/Workspace/columbia/spring2013/embedded/scripts/status.sh
+    ssh "$user@micro${i}.ilab.columbia.edu" 'bash -s' < ./status.sh
     machine_statuses[$((i-1))]=$?;
 done
 echo "**************************************************"

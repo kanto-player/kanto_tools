@@ -1,4 +1,4 @@
 simdft
-inputs.txt
-outputs.txt
+*.txt
 comp2real
+coeffgen

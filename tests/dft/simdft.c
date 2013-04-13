@@ -13,7 +13,6 @@ int main(void)
 	int16_t fdom[N][2];
 	float complex coeff;
 	int32_t sumreal, sumimag, multreal, multimag;
-	int32_t amp;
 	int16_t coreal, coimag;
 	int n, k;
 
@@ -37,8 +36,8 @@ int main(void)
 		fdom[k][0] = sumreal >> 16;
 		fdom[k][1] = sumimag >> 16;
 
-		amp = fdom[k][0] * fdom[k][0] + fdom[k][1] * fdom[k][1];
-
-		printf("%d\n", amp);
+		printf("%d %d\n", fdom[k][0], fdom[k][1]);
 	}
+
+	return 0;
 }

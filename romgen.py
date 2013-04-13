@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 import struct
-import json
 import sys
 import math
 import os.path
+import sys
 
 def convert_int(x, size):
     fmt = "x\"%%0%dx\"" % (size / 4)
@@ -30,24 +30,18 @@ def convert_float_array(arr, double=False):
     return ', '.join([convert_float(x, double) for x in arr])
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("Usage: romgen.py romfile.json")
+    if len(sys.argv) < 3:
+        print("Usage: romgen.py dtype dsize")
         sys.exit(1)
 
-    with open(sys.argv[1], "r") as jsonf:
-        romdata = json.load(jsonf)
-
-    arr = romdata['values']
-    dtype = romdata['dtype']
-    dsize = romdata['dsize']
+    dtype = sys.argv[1]
+    dsize = int(sys.argv[2])
     
-    vhdltype = {'int': 'signed', 
-                'uint': 'unsigned', 
-                'float': 'std_logic_vector'}[dtype]
-
     if dtype == 'float':
-        arrstr = convert_float_array(arr, dsize == 64)
+        values = [float(line.strip()) for line in sys.stdin]
+        arrstr = convert_float_array(values, dsize == 64)
     else:
-        arrstr = convert_int_array(arr, dsize)
+        values = [int(line.strip()) for line in sys.stdin]
+        arrstr = convert_int_array(values, dsize)
 
     print "(" + arrstr + ")"

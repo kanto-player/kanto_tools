@@ -31,17 +31,22 @@ def convert_float_array(arr, double=False):
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print("Usage: romgen.py dtype dsize")
+        print("Usage: romgen.py dtype dsize [romfile]")
         sys.exit(1)
 
     dtype = sys.argv[1]
     dsize = int(sys.argv[2])
     
+    if len(sys.argv) >= 4:
+        romfile = open(sys.argv[3])
+    else:
+        romfile = sys.stdin
+    
     if dtype == 'float':
-        values = [float(line.strip()) for line in sys.stdin]
+        values = [float(line.strip()) for line in romfile]
         arrstr = convert_float_array(values, dsize == 64)
     else:
-        values = [int(line.strip()) for line in sys.stdin]
+        values = [int(line.strip()) for line in romfile]
         arrstr = convert_int_array(values, dsize)
 
     print "(" + arrstr + ")"

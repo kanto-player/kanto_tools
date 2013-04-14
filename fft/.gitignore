@@ -2,3 +2,4 @@ simdft
 *.txt
 comp2real
 dftcoeffgen
+rccoeffgen

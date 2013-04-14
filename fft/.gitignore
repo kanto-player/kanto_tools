@@ -1,4 +1,4 @@
 simdft
 *.txt
 comp2real
-coeffgen
+dftcoeffgen

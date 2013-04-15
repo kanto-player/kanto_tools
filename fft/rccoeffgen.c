@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	for (k = 0; k < n / 2; k++) {
 		coeff = SHRT_MAX * cexp(-2 * M_PI * I * k / n);
 		real = creal(coeff);
-		imag = creal(coeff);
+		imag = cimag(coeff);
 		printf("%d %d\n", real, imag);
 	}
 

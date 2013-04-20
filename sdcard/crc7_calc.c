@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
 	}
 
 	num = strtoll(argv[1], NULL, 16);
+	num &= 0xffffffffff; /* 5 byte number */
 	printf("num : %llx\n", num);
 	crc = 0;
 

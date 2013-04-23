@@ -1,5 +1,6 @@
 crc7_calc
 testdata
+text2pcm
 *.mp3
 *.flac
 *.ogg

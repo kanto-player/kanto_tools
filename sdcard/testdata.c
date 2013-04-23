@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
 	unsigned char data[2 * TEST_NB];
-	unsigned short i;
+	unsigned short i, out;
 	FILE * f;
 
 	if (argc < 2) {
@@ -16,8 +16,9 @@ int main(int argc, char *argv[])
 	}
 
 	for (i = 0; i < TEST_SIZE; i++) {
-		data[2 * i] = (i >> 8) & 0xff;
-		data[2 * i + 1] = i & 0xff;
+		out = (i & (1 << 8)) ? ~i : i;
+		data[2 * i] = (out >> 8) & 0xff;
+		data[2 * i + 1] = out & 0xff;
 	}
 
 	f = fopen(argv[1], "w");

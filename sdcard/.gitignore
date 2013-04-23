@@ -1,5 +1,7 @@
 crc7_calc
+testdata
 *.mp3
 *.flac
 *.ogg
 *.raw
+*.img

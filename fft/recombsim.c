@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
 	}
 
 	for (k = 0; k < n / 2; k++) {
-		fscanf(stdin, "%d %d %d %d\n", &evenreal, &evenimag,
-					       &oddreal, &oddimag);
+		fscanf(stdin, "%hd %hd %hd %hd\n", &evenreal, &evenimag,
+					           &oddreal, &oddimag);
 		coeff = SHRT_MAX * cexp(-2 * M_PI * I * k / n);
 		coreal = creal(coeff);
 		coimag = cimag(coeff);

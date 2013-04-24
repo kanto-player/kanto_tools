@@ -17,7 +17,7 @@ int main(void)
 	int n, k;
 
 	for (n = 0; n < N; n++)
-		fscanf(stdin, "%d\n", &tdom[n]);
+		fscanf(stdin, "%hd\n", &tdom[n]);
 	
 	for (k = 0; k < N; k++) {
 		sumreal = 0;

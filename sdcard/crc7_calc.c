@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/* CRC7 Calculator
+/* CRC7 Calculator for SD card SPI protocol
  * Based off of the implementation in the Linux Kernel */
 
 typedef unsigned char u8;

@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Converts a stream of numbers into a VHDL array initializer
+
 import struct
 import sys
 import math

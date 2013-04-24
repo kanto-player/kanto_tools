@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Simulates the hardware FFT compilation using dftsim and recombsim
+# Takes 256 numbers line by line on standard input and produces 
+# 256 complex number pairs line by line on standard output
+
 cat > fftinputs.txt
 
 inputs=( $(<fftinputs.txt) )

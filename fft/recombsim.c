@@ -5,6 +5,10 @@
 #include <limits.h>
 #include <math.h>
 
+/* Simulates the recombination stage of the FFT computation
+ * Takes n / 2 complex number pairs on standard input
+ * prints out n complex number pairs on output */
+
 int main(int argc, char *argv[])
 {
 	int k, n;

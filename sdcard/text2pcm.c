@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* Converts text-format numbers on standard input
+ * writes out 16-bit big-endian PCM data on standard output */
+
 int main(void)
 {
 	short sample;

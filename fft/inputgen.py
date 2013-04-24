@@ -1,6 +1,8 @@
 import numpy as np
 import sys
 
+# Produces N samples of a sine wave at W Hz frequency
+
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         print("Usage: " + sys.argv[0] + " N W")

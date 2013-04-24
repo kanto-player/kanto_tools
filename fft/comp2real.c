@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* Takes complex number pairs line by line on standard input,
+ * combines them using the formula num = (real << 16) | imag
+ * and then writes them out to standard output */
+
 int main(void)
 {
 	int real, imag, comb;

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Usage: ./mkauimage.sh audio1.ogg [audio2.mp3 ...] audio.raw
+# Takes in several audio files, concatenates them, and converts them to
+# raw 16-bit signed-integer big-endian PCM data
+
 length=$(($#-1))
 inputs=${@:1:$length}
 output=$(eval echo \$$#)

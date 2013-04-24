@@ -7,6 +7,10 @@
 
 #define N 16
 
+/* Simulates the DFT stage of the FFT computation
+ * Takes 16 numbers line by line on standard input
+ * Produces 16 complex number pairs on standard output */
+
 int main(void)
 {
 	int16_t tdom[N];

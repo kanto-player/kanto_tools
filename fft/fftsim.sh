@@ -11,10 +11,10 @@ reorder=(0 8 4 12 2 10 6 14 1 9 5 13 3 11 7 15)
 
 for i in {0..15}
 do
-	base=$(expr ${reorder[$i]} \* 16 )
 	for j in {0..15}
 	do
-		addr=$(expr $base + $j)
+		base=$(expr $j \* 16 )
+		addr=$(expr $base + ${reorder[$i]})
 		echo ${inputs[$addr]}
 	done | ./dftsim > dft${i}.txt
 done

@@ -4,9 +4,13 @@
 # Takes 256 numbers line by line on standard input and produces 
 # 256 complex number pairs line by line on standard output
 
-cat > fftinputs.txt
+if [ -z "$1" ]; then
+	cat > fftinputs.txt
+	inputs=( $(<fftinputs.txt) )
+else
+	inputs=( $(<"$1") )
+fi
 
-inputs=( $(<fftinputs.txt) )
 reorder=(0 8 4 12 2 10 6 14 1 9 5 13 3 11 7 15)
 
 for i in {0..15}

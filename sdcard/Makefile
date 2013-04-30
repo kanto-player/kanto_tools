@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-Wall -O2
-EXEC=crc7_calc testdata text2pcm
+EXEC=crc7_calc testdata text2pcm pcm2text
 
 all: $(EXEC)
 

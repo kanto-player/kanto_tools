@@ -21,11 +21,11 @@ if __name__ == '__main__':
 
     print("WIDTH=%d;" % width)
     print("DEPTH=%d;\n" % depth)
-    print("ADDRESS_RADIX=HEX;")
+    print("ADDRESS_RADIX=UNS;")
     print("DATA_RADIX=HEX;\n")
     print("CONTENT BEGIN\n")
     
     for i, val in enumerate(values):
-        print("%x : %s;" % (i, convert_int(val, width)))
+        print("%d : %s;" % (i, convert_int(val, width)))
 
     print("\nEND;")

@@ -130,3 +130,8 @@ Takes complex numbers on standard input and writes out their hardware
 representation to standard output. The hardware representation is
 
 	real << 16 | imag
+
+## fft/sumbins
+
+Takes integers on standard input and sums every N integers. 
+N is the first argument.

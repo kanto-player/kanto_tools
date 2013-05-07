@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     for i, inptfile in enumerate(sys.argv[1:-1]):
         # convert to PCM using sox
-        sox_call = "sox \"" + inptfile + "\" -b 16 -e signed-integer -B -c 1 -t raw - " + "> tempfileformkau" + str(i)
+        sox_call = "sox \"" + inptfile + "\" -b 16 -e signed-integer -B -c 1 -t raw tempfileformkau" + str(i)
         print sox_call 
         os.system(sox_call)
 

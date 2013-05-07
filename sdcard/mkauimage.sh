@@ -10,5 +10,7 @@ output=$(eval echo \$$#)
 
 for file in $inputs
 do
-	sox "$file" -b 16 -e signed-integer -B -c 1 -t raw - | dd bs=512
+	sox "$file" -b 16 -e signed-integer -B -c 1 -t raw - >tempfile
+        cat tempfile | wc -c | dd bs=512
+        dd if=tempfile bs=512
 done > $output

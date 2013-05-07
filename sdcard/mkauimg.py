@@ -13,12 +13,12 @@ filesizelist = []
 
 for i, inptfile in enumerate(sys.argv[1:-1]):
   # convert to PCM using sox
-  sox_call = "sox \"" + inptfile + "\" -b 16 -e signed-integer -B -c 1 -t raw - " + "> temp" + str(i)
-  
+  sox_call = "sox \"" + inptfile + "\" -b 16 -e signed-integer -B -c 1 -t raw - " + "> tempfileformkau" + str(i)
+  print sox_call 
   os.system(sox_call)
 
 # get number of characters, need to convert to 512byte block
-  filelength = os.path.getsize("temp" + str(i))
+  filelength = os.path.getsize("tempfileformkau" + str(i))
   newlength = ((filelength - 1)/512 + 1)
   filesizelist.append(newlength)
 
@@ -28,6 +28,8 @@ f = open(sys.argv[-1],"a")
 f.write(header)
 
 for i, inptfile in enumerate(sys.argv[1:-1]):
-  fin = open("temp" + str(i), "r")
+  fin = open("tempfileformkau" + str(i), "r")
   data = fin.read()
   f.write(data)
+
+os.system("rm tempfileformkau*")

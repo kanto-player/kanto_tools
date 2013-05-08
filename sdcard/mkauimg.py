@@ -13,28 +13,31 @@ if __name__ == '__main__':
     filesizelist = []
     curoff = 1
     offsetlist = [curoff]
+    inputs = sys.argv[1:-1]
 
-    for i, inptfile in enumerate(sys.argv[1:-1]):
+    for i, inptfile in enumerate(inputs):
         # convert to PCM using sox
         sox_call = "sox \"" + inptfile + "\" -b 16 -e signed-integer -B -c 1 -t raw tempfileformkau" + str(i)
-        print sox_call 
+        print(sox_call)
         os.system(sox_call)
 
 # get number of characters, need to convert to 512byte block
         filelength = os.path.getsize("tempfileformkau" + str(i))
-        newlength = ((filelength - 1)/512 + 1)
+        newlength = int((filelength - 1)/512 + 1)
         filesizelist.append(newlength)
     
     for size in filesizelist[:-1]:
         curoff += size
         offsetlist.append(curoff)
 
+    print("Track offsets: " + str(offsetlist))
+
     header = ''.join([struct.pack(">I", l) for l in offsetlist])
     header = header.ljust(512, '\0')
     f = open(sys.argv[-1], "w")
     f.write(header)
 
-    for i in range(0, len(sys.argv) - 2):
+    for i in range(0, len(inputs)):
         fin = open("tempfileformkau" + str(i), "r")
         data = fin.read(512)
         while len(data) == 512:

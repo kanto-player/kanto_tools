@@ -26,7 +26,7 @@ if __name__ == '__main__':
         newlength = int((filelength - 1)/512 + 1)
         filesizelist.append(newlength)
     
-    for size in filesizelist[:-1]:
+    for size in filesizelist:
         curoff += size
         offsetlist.append(curoff)
 

@@ -52,13 +52,16 @@ big-endian signed integers to standard output.
 The opposite of text2pcm. Reads 16-bit big-endian signed integers from standard
 input and writes their textual form to standard output.
 
-## sdcard/mkauimage.sh
+## sdcard/mkauimg.py
 
 Takes several audio files from standard input and writes then in raw PCM to
 an output file. The input files can be in any audio format recognized by `sox`.
 
 All input files are assumed to have a framerate of 44100 Hz. 
 Any input file with stereo audio is mixed down to a single channel.
+
+This tool will also take care of writing the "header" block of the SD card
+format, which contains the starting addresses of each song, as well as the title.
 
 Usage: mkauimage.sh input1 [input2 input3 ...] output
 

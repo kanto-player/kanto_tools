@@ -8,12 +8,46 @@ import sys
 import subprocess
 import os
 import struct
+import mutagen
+from mutagen.mp3 import MP3
+
+def get_song_title(filename):
+    metadata = mutagen.File(filename)
+
+    if type(metadata) is MP3:
+        title = metadata['TIT2'].text[0]
+        artist = metadata['TPE1'].text[0]
+    else:
+        title = metadata['title'][0]
+        artist = metadata['artist'][0]
+
+    return str(title + " - " + artist)
+
+def make_header(offset, filename):
+    
+    if filename is not None:
+        title = get_song_title(filename)
+        print title
+
+        if len(title) >= 60:
+            raise Exception("Song title is too long")
+
+        header = struct.pack(">I", offset) + title
+        header = header.ljust(64, '\0')
+    else:
+        header = struct.pack(">I", offset).ljust(64, '\0')
+
+    return header
 
 if __name__ == '__main__':
     filesizelist = []
     curoff = 1
     offsetlist = [curoff]
     inputs = sys.argv[1:-1]
+
+    if len(inputs) >= 8:
+        print "Too many songs. Will only write the first seven."
+        inputs = inputs[:7]
 
     for i, inptfile in enumerate(inputs):
         # convert to PCM using sox
@@ -32,8 +66,11 @@ if __name__ == '__main__':
 
     print("Track offsets: " + str(offsetlist))
 
-    header = ''.join([struct.pack(">I", l) for l in offsetlist])
+    header = ''.join([make_header(off, fname) 
+                        for (off, fname) in zip(offsetlist[:-1], inputs)])
+    header += make_header(offsetlist[-1], None)
     header = header.ljust(512, '\0')
+    
     f = open(sys.argv[-1], "w")
     f.write(header)
 
